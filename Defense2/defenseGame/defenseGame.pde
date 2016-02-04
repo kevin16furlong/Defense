@@ -56,7 +56,7 @@ void draw()
 // Check every bullet against every aiship
 void checkCollisions()
 {
-  /*for (int i = gameObjects.size() - 1; i >= 0; i --)
+/*for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
     if (go instanceof Ship)
@@ -78,20 +78,20 @@ void checkCollisions()
     }
   }
   */
-  //Collisions between bullet and ship. If ship is hit with bullet, ship lives decreases, remove bullet
+  //Collisions between bullet and ship. If Aiship is hit with bullet, remove bullet & AiShip
 
   for (int i = 0; i < gameObjects.size(); i++)
   {
     GameObject aiship = gameObjects.get(i);
 
-    if (aiship instanceof AiShip)
+    if (aiship instanceof Ship)
     {
       for (int j = 0; j < gameObjects.size(); j++)
       {
         GameObject bullet = gameObjects.get(j);
         if(bullet instanceof Bullet)
         {
-          //if bullet distance less than 5
+          //if bullet distance
           if(aiship.pos.dist(bullet.pos) < aiship.halfW)
           {
             //Casting from GameObject to Ship

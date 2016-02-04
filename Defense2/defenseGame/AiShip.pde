@@ -2,6 +2,9 @@
 class AiShip extends GameObject
 { 
   float thetaDir;
+  float w = width;
+  float h = height;
+  float HW = halfW;
   
   AiShip()
   {
@@ -21,6 +24,7 @@ class AiShip extends GameObject
     translate(pos.x, pos.y);
     rotate(theta);
     stroke(c);
+    
     float lastX = 0; float lastY = - halfW;
     int sides = 5;
     float thetaInc = TWO_PI / sides;
@@ -30,6 +34,7 @@ class AiShip extends GameObject
       float x = sin(t) * halfW;
       float y = -cos(t) * halfW;
       line(lastX, lastY, x, y);
+      
       lastX = x;
       lastY = y;
     }
@@ -49,24 +54,29 @@ class AiShip extends GameObject
       if (pos.y - halfW < 0)
       {
         theta = HALF_PI;
-        pos.y = halfW;
+        pos.y = HW;
       }
-      if (pos.x + halfW > width)
+      if (pos.x + halfW > w)
       {
         theta = PI;
-        pos.x = width - halfW;
+        pos.x = w - halfW;
       }
-      if (pos.y + halfW > height)
+      if (pos.y + halfW > h)
       {
         theta = PI + HALF_PI;
-        pos.y = height - halfW;
+        pos.y = h - halfW;
       }
       if (pos.x < halfW)
       {
         theta = 0;
-        pos.x = halfW;
+        pos.x = HW;
       }
-    
+      HW+=0.05;
+      w-=0.05;
+      h-=0.05;
+   
   }
+ 
 
 }
+
