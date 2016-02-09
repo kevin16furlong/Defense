@@ -2,7 +2,7 @@
 class Ship extends GameObject
 {
   // Fields!
-  //char move;
+  
   char left;
   char right;
   char fire;
@@ -22,12 +22,12 @@ class Ship extends GameObject
   Ship(char left, char right, char fire, float startX, float startY, color c)
   {
     super(startX, startY, 50);
-    //this.move = move;
+    
     this.left = left;
     this.right = right;
     this.fire = fire;
     this.c = c;
-    lives = 10;
+    //lives = 10;
    
   }
 
@@ -58,7 +58,7 @@ class Ship extends GameObject
       bullet.theta = theta;
       gameObjects.add(bullet);
       elapsed = 0;
-      //ammo --;
+      
       
     }
     
@@ -89,14 +89,17 @@ class Ship extends GameObject
     pushMatrix(); // reset the translation and rotation
     translate(pos.x, pos.y);
     stroke(c);
+    fill(0,0,0);
+    ellipse(halfW,halfW,halfW*15,halfW*15);
     fill(c);
-   // text("Ammo: " + ammo, w, 0);
- //   text("Lives: " + lives, w, 20);
-    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
+    text("Points: " + points, 10, 5); 
+    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate 
+      
     line(- halfW, halfW, 0, - halfW);
     line(0, - halfW, halfW, halfW);
     line(halfW, halfW, 0, 0);
     line(- halfW, halfW, 0, 0);
+    
     popMatrix();
   }   
 }

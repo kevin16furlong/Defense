@@ -3,7 +3,7 @@ class Bullet extends GameObject
   
   Bullet()
   {
-    speed = 20.0f;
+    speed = 10.0f;
   }
   
   void render()
@@ -27,7 +27,7 @@ class Bullet extends GameObject
     
     if (pos.x < 0 || pos.y < 0 || pos.x > width || pos.y > height)
     {
-      // Im dead!
+      
       gameObjects.remove(this);
     }
   }

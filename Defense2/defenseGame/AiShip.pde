@@ -5,6 +5,8 @@ class AiShip extends GameObject
   float w = width;
   float h = height;
   float HW = halfW;
+  float side =0;
+  //int lives=1;
   
   AiShip()
   {
@@ -14,7 +16,6 @@ class AiShip extends GameObject
     forward.y = random(-1, 1);
     forward.normalize();
     thetaDir = random(-0.2f, 0.2f);
-       
   }
    
   
@@ -51,22 +52,22 @@ class AiShip extends GameObject
       pos.add(forward);
       
       
-      if (pos.y - halfW < 0)
+      if (pos.y - halfW <= side)
       {
         theta = HALF_PI;
         pos.y = HW;
       }
-      if (pos.x + halfW > w)
+      if (pos.x + halfW >= w)
       {
         theta = PI;
         pos.x = w - halfW;
       }
-      if (pos.y + halfW > h)
+      if (pos.y + halfW >= h)
       {
         theta = PI + HALF_PI;
         pos.y = h - halfW;
       }
-      if (pos.x < halfW)
+      if (pos.x <= halfW)
       {
         theta = 0;
         pos.x = HW;
@@ -74,6 +75,7 @@ class AiShip extends GameObject
       HW+=0.05;
       w-=0.05;
       h-=0.05;
+      
    
   }
  
