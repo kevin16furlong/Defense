@@ -1,7 +1,7 @@
 /* a defense game using a basic tower defense stratgdgy*/
 
 int points=0;
-
+int Object=0;
 //Remove stars. Make screen bigger
 void setup()
 {
@@ -44,43 +44,46 @@ void draw()
   }
 
   // Create aiShips 
-  if(points <100)
-  {
-    if (frameCount % 60 == 0)
+  //while (Object <= 1000)
+  //{
+    if(points <100)
     {
-      GameObject aiship = null;
-      aiship = new AiShip();
-      gameObjects.add(aiship);
+      if (frameCount % 60 == 0)
+      {
+        GameObject aiship = null;
+        aiship = new AiShip();
+        gameObjects.add(aiship);
+      }
     }
-  }
-  else if(points > 100 && points < 500)
-  {  
-   if (frameCount % 30 == 0)
+    else if(points > 100 && points < 500)
+    {  
+     if (frameCount % 30 == 0)
+      {
+        GameObject aiship = null;
+        aiship = new AiShip();
+        gameObjects.add(aiship);
+      }
+    }
+    else if (points >500 && points < 1000)
     {
-      GameObject aiship = null;
-      aiship = new AiShip();
-      gameObjects.add(aiship);
+      if (frameCount % 15 == 0)
+      {
+        GameObject aiship = null;
+        aiship = new AiShip();
+        gameObjects.add(aiship);
+      }
     }
-  }
-  else if (points >500 && points < 1000)
-  {
-    if (frameCount % 15 == 0)
+    else
     {
-      GameObject aiship = null;
-      aiship = new AiShip();
-      gameObjects.add(aiship);
+      if (frameCount % 5 == 0)
+      {
+        GameObject aiship = null;
+        aiship = new AiShip();
+        gameObjects.add(aiship);
+      }
     }
-  }
-  else
-  {
-    if (frameCount % 10 == 0)
-    {
-      GameObject aiship = null;
-      aiship = new AiShip();
-      gameObjects.add(aiship);
-    }
-  }
-  
+   //Object++;
+//  }
 
   checkCollisions();
 }
@@ -101,7 +104,6 @@ void checkCollisions()
         {
           if (go.pos.dist(other.pos) < go.halfW + other.halfW)
           {
-            // Do some casting
            points+=10;
            gameObjects.remove(go);
            gameObjects.remove(other);
@@ -110,6 +112,8 @@ void checkCollisions()
       }
     }
   }
+  //check if aiships have reached inner circle
+  
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
@@ -122,8 +126,7 @@ void checkCollisions()
         {
           if (go.pos.dist(other.pos) < go.halfW + other.halfW)
           {
-            // Do some casting
-          
+                   
            gameObjects.remove(go);
            gameObjects.remove(other);
            
