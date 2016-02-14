@@ -72,9 +72,9 @@ class AiShip extends GameObject
         theta = 0;
         pos.x = HW;
       }
-      HW+=0.05;
-      w-=0.05;
-      h-=0.05;
+      HW+=0.15;
+      w-=0.15;
+      h-=0.15;
       
    
   }

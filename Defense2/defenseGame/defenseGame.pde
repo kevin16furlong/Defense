@@ -6,6 +6,7 @@ int Object=0;
 void setup()
 {
   size(700, 700);
+  
   Ship ship = new Ship('A', 'D','S', width/2, height/2, color(255,0,0));
   gameObjects.add(ship);
   
@@ -44,15 +45,15 @@ void draw()
   }
 
   // Create aiShips 
-  //while (Object <= 1000)
-  //{
-    if(points <100)
+ 
+    if(points <100 )
     {
       if (frameCount % 60 == 0)
       {
         GameObject aiship = null;
         aiship = new AiShip();
         gameObjects.add(aiship);
+        Object++;
       }
     }
     else if(points > 100 && points < 500)
@@ -62,6 +63,7 @@ void draw()
         GameObject aiship = null;
         aiship = new AiShip();
         gameObjects.add(aiship);
+        Object++;
       }
     }
     else if (points >500 && points < 1000)
@@ -71,19 +73,20 @@ void draw()
         GameObject aiship = null;
         aiship = new AiShip();
         gameObjects.add(aiship);
+        Object++;
       }
     }
     else
     {
-      if (frameCount % 5 == 0)
+      if (frameCount % 5 == 0 && Object<600)
       {
         GameObject aiship = null;
         aiship = new AiShip();
         gameObjects.add(aiship);
+        Object++;
       }
     }
-   //Object++;
-//  }
+
 
   checkCollisions();
 }
