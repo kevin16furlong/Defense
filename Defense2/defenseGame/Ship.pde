@@ -7,11 +7,6 @@ class Ship extends GameObject
   char right;
   char fire;
   int lives;
- 
-  
-  // Constructor!!
-  // HAS NO RETURN TYPE
-  // Name is always the same as the class
   Ship()
   {
     // Constructor chaining. Call a constructor in the super class
@@ -27,7 +22,6 @@ class Ship extends GameObject
     this.right = right;
     this.fire = fire;
     this.c = c;
-    //lives = 10;
    
   }
 
@@ -59,7 +53,6 @@ class Ship extends GameObject
       gameObjects.add(bullet);
       elapsed = 0;
       
-      
     }
     
     if (pos.x < 0)
@@ -90,10 +83,10 @@ class Ship extends GameObject
     translate(pos.x, pos.y);
     stroke(c);
     fill(0,0,0);
-    ellipse(halfW,halfW,halfW*15,halfW*15);
+    
     fill(c);
     text("Points: " + points, 10, 5); 
-    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate 
+    rotate(theta); 
       
     line(- halfW, halfW, 0, - halfW);
     line(0, - halfW, halfW, halfW);

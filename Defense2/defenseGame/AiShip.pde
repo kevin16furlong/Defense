@@ -5,7 +5,7 @@ class AiShip extends GameObject
   float w = width;
   float h = height;
   float HW = halfW;
-  float side =0;
+  float side = 0;
   //int lives=1;
   
   AiShip()
@@ -72,9 +72,10 @@ class AiShip extends GameObject
         theta = 0;
         pos.x = HW;
       }
-      HW+=0.15;
-      w-=0.15;
-      h-=0.15;
+      HW+=0.10;
+      w-=0.10;
+      h-=0.10;
+      side+=0.10;
       
    
   }

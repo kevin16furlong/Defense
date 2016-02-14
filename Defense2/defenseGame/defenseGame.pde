@@ -2,28 +2,31 @@
 
 int points=0;
 int Object=0;
-//Remove stars. Make screen bigger
+int set;
+int mode = 0;
+
 void setup()
 {
-  size(700, 700);
+  set=0;
+  size(600, 600);
   
   Ship ship = new Ship('A', 'D','S', width/2, height/2, color(255,0,0));
   gameObjects.add(ship);
   
-  //AiShip aiship = new AiShip();
-  //gameObjects.add(aiship);
-  
-
 }
 
-// The class name always starts with uppercase!!
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-
 boolean[] keys = new boolean[512];
 
 void keyPressed()
 {
   keys[keyCode] = true;
+  
+  if (key >= '0' && key <='5')
+  {
+    mode = key - '0';
+  }
+  
 }
 
 void keyReleased()
@@ -43,9 +46,61 @@ void draw()
       go.render();
     
   }
+  if(set==0)
+  {
+    
+    Home();
+  }
+  switch(mode)
+  {
+    case 0:
+    {
+      Home();
+      break;
+    }
+    case 1:
+    {
+      playGame();
+      break;
+    }
+    case 3:
+    {
+      endGame();
+      break;
+    }
 
+}
+}
+//print home screen
+void Home()
+{
+
+  text("  Defense  ",X,Y+100);
+  text("S to shoot",X,Y+20);
+  text("A to Rotate left",X,Y+40);
+  text("D to Rotate Right",X,Y+60);
+  text("  Press 1 to play Game",X,Y+120);
+  set=1;
+
+}
+void endGame()
+{
+  
+    
+    text("  Defense  ",X+250,Y+250);
+    text("  Game Over  ",X+250,Y+270);
+    text("  End Points =  ",X+250,Y+290);
+    text(points, X+290,Y+290);
+    text("  Press 1 to play a New Game",X,Y+120);
+    set=1;
+  
+}
+
+//game mode
+void playGame()
+{
   // Create aiShips 
- 
+ if(Object < 150){ 
     if(points <100 )
     {
       if (frameCount % 60 == 0)
@@ -78,7 +133,7 @@ void draw()
     }
     else
     {
-      if (frameCount % 5 == 0 && Object<600)
+      if (frameCount % 5 == 0 && points > 1000)
       {
         GameObject aiship = null;
         aiship = new AiShip();
@@ -86,13 +141,11 @@ void draw()
         Object++;
       }
     }
-
-
-  checkCollisions();
+ }
+ checkCollisions();
 }
 
-
-// Check every bullet against every aiship
+// Check every bullet against aiships and collision with ship
 void checkCollisions()
 {
   for (int i = gameObjects.size() - 1; i >= 0; i --)
@@ -110,6 +163,7 @@ void checkCollisions()
            points+=10;
            gameObjects.remove(go);
            gameObjects.remove(other);
+           Object--;
           }
         }
       }
@@ -120,19 +174,18 @@ void checkCollisions()
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
-    if (go instanceof AiShip)
+    if (go instanceof Ship)
     {
       for (int j = gameObjects.size() - 1; j >= 0; j --)
       {
         GameObject other = gameObjects.get(j);
-        if (other instanceof Ship) // Check the type of a object
+        if (other instanceof AiShip) // Check the type of a object
         {
           if (go.pos.dist(other.pos) < go.halfW + other.halfW)
           {
-                   
-           gameObjects.remove(go);
-           gameObjects.remove(other);
-           
+            gameObjects.remove(go);
+            gameObjects.remove(other);
+            set=3;         
           }
         }
       }
