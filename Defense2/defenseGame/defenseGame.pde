@@ -8,10 +8,12 @@ int mode = 0;
 void setup()
 {
   set=0;
+  points=0;
   size(600, 600);
   
   Ship ship = new Ship('A', 'D','S', width/2, height/2, color(255,0,0));
   gameObjects.add(ship);
+ 
   
 }
 
@@ -60,6 +62,7 @@ void draw()
     }
     case 1:
     {
+     
       playGame();
       break;
     }
@@ -81,26 +84,38 @@ void Home()
   text("D to Rotate Right",X,Y+60);
   text("  Press 1 to play Game",X,Y+120);
   set=1;
+  
 
 }
 void endGame()
 {
   
+     for (int i = gameObjects.size() - 1; i >= 0; i --)
+  {
+    GameObject go = gameObjects.remove(i);
     
+      go.update();
+      go.render();
+    
+  }
     text("  Defense  ",X+250,Y+250);
     text("  Game Over  ",X+250,Y+270);
     text("  End Points =  ",X+250,Y+290);
-    text(points, X+290,Y+290);
+    text(points, X+400,Y+290);
     text("  Press 1 to play a New Game",X,Y+120);
     set=1;
-  
+    if (frameCount % 240 == 0)
+    {
+      mode=0;
+      setup();
+    }
 }
 
 //game mode
 void playGame()
 {
   // Create aiShips 
- if(Object < 150){ 
+ if(Object < 100){ 
     if(points <100 )
     {
       if (frameCount % 60 == 0)
@@ -185,7 +200,7 @@ void checkCollisions()
           {
             gameObjects.remove(go);
             gameObjects.remove(other);
-            set=3;         
+            mode=3;         
           }
         }
       }

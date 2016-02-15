@@ -83,11 +83,10 @@ class Ship extends GameObject
     translate(pos.x, pos.y);
     stroke(c);
     fill(0,0,0);
-    
     fill(c);
     text("Points: " + points, 10, 5); 
     rotate(theta); 
-      
+     
     line(- halfW, halfW, 0, - halfW);
     line(0, - halfW, halfW, halfW);
     line(halfW, halfW, 0, 0);
