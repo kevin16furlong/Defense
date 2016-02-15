@@ -1,5 +1,9 @@
 /* a defense game using a basic tower defense stratgdgy*/
 
+//add in last played points
+//find music
+//fix exceptions on mutiple objects
+
 int points=0;
 int Object=0;
 int set;
