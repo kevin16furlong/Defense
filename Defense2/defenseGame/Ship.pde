@@ -1,17 +1,12 @@
-// The class name starts with uppercase
 class Ship extends GameObject
 {
-  // Fields!
-  
   char left;
   char right;
   char fire;
   int lives;
   Ship()
   {
-    // Constructor chaining. Call a constructor in the super class
     super(width * 0.5f, height  * 0.5f, 50);     
-    
   }
   
   Ship(char left, char right, char fire, float startX, float startY, color c)
@@ -21,8 +16,7 @@ class Ship extends GameObject
     this.left = left;
     this.right = right;
     this.fire = fire;
-    this.c = c;
-   
+    this.c = c; 
   }
 
   int elapsed = 12;

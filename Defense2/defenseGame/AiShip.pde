@@ -1,4 +1,4 @@
-// The class name starts with uppercase
+// The AiShip class
 class AiShip extends GameObject
 { 
   float thetaDir;
@@ -6,7 +6,6 @@ class AiShip extends GameObject
   float h = height;
   float HW = halfW;
   float side = 0;
-  //int lives=1;
   
   AiShip()
   {
@@ -17,9 +16,7 @@ class AiShip extends GameObject
     forward.normalize();
     thetaDir = random(-0.2f, 0.2f);
   }
-   
-  
-    void render()
+  void render()
   {
     pushMatrix();
     translate(pos.x, pos.y);
@@ -41,17 +38,15 @@ class AiShip extends GameObject
     }
     popMatrix();
   }
-  // This OVERRIDES the update method from the superclass
+  // Override the update method from the superclass
   void update()
   {
       forward.x = sin(theta);
       forward.y = - cos(theta);
-      
-      // Move in the direction we are rotated
+            
       forward.mult(speed);
       pos.add(forward);
-      
-      
+         
       if (pos.y - halfW <= side)
       {
         theta = HALF_PI;
@@ -75,11 +70,7 @@ class AiShip extends GameObject
       HW+=0.10;
       w-=0.10;
       h-=0.10;
-      side+=0.10;
-      
-   
+      side+=0.10;  
   }
- 
-
 }
 
