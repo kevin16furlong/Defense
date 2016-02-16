@@ -11,6 +11,12 @@ int mode = 0;
 int lastPoints=0;
 void setup()
 {
+  for(int i= gameObjects.size() -1 ;i>0;i--)
+  {
+    gameObjects.get(i);
+    gameObjects.remove(i);  
+  }
+  
   set=0;
   points=0;
   size(600, 600);
@@ -43,7 +49,7 @@ void keyReleased()
 void draw()
 {
   background(0);
-
+  //may not be working as attempted.
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
