@@ -4,6 +4,8 @@
 //sort out bot creation on second game
 //find music
 //file write and load for high score
+//do some morestuff
+
 
 int points=0;
 int Object=0;
