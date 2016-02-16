@@ -8,7 +8,7 @@ int points=0;
 int Object=0;
 int set;
 int mode = 0;
-
+int lastPoints=0;
 void setup()
 {
   set=0;
@@ -87,6 +87,8 @@ void Home()
   text("A to Rotate left",X,Y+40);
   text("D to Rotate Right",X,Y+60);
   text("  Press 1 to play Game",X,Y+120);
+  text("Last points ",X+500,Y+40);
+  text(lastPoints, X+565,Y+40); 
   set=1;
   
 
@@ -107,6 +109,7 @@ void endGame()
     text("  End Points =  ",X+250,Y+290);
     text(points, X+400,Y+290);
     text("  Press 1 to play a New Game",X,Y+120);
+    lastPoints=points;
     set=1;
     if (frameCount % 240 == 0)
     {
@@ -152,7 +155,7 @@ void playGame()
     }
     else
     {
-      if (frameCount % 5 == 0 && points > 1000)
+      if (frameCount % 10 == 0 && points > 1000)
       {
         GameObject aiship = null;
         aiship = new AiShip();
