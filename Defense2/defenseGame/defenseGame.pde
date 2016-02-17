@@ -4,6 +4,12 @@
 //find music??
 //file write high scores
 
+
+//inputs
+import java.io.File;
+import java.io.IOException;
+
+//variables
 int points;
 int Object = 0;
 int set;
@@ -16,10 +22,14 @@ void setup()
 {
  
   // Load text file as a string
-  String[] score = loadStrings("data.txt");
+  String[] score = loadStrings("data.csv");
+  println(score);
   // Convert string into an array of integers using ',' as a delimiter
-  data = int(split(score[0],','));
   
+   
+     data = int(split(score[0],'.'));
+     println(data);
+   
    for (int i = 0; i < data.length; i++) 
    {
      if(data[i]>high)
@@ -137,7 +147,15 @@ void endGame()
     if(points > lastPoints)
     {
       lastPoints=points;
-      //save();
+      
+      for(int i=0;i<data.length;i++)
+      {
+        if(i==data.length-1)
+        {
+          data[i]=lastPoints;
+        }
+      }
+      save();
       
       
     }
@@ -246,8 +264,9 @@ void checkCollisions()
     }
   } 
 }
-/*void save()
-{
+void save()
+{ 
+  String x[] = str(data);
+   saveStrings("data/data.csv", x);
+ 
 }
-
-*/
