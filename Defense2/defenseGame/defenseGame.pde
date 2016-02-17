@@ -137,7 +137,8 @@ void endGame()
     if(points > lastPoints)
     {
       lastPoints=points;
-      //Score[0]=concat(points, ",");
+      //save();
+      
       
     }
     set=1;
@@ -224,7 +225,6 @@ void checkCollisions()
     }
   }
   //check if aiships have reached ship
-  
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
@@ -244,7 +244,10 @@ void checkCollisions()
         }
       }
     }
-  }
-  
+  } 
+}
+/*void save()
+{
 }
 
+*/
