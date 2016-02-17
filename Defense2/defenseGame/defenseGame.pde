@@ -5,8 +5,6 @@
 //find music??
 //file write high scores
 
-
-
 int points;
 int Object = 0;
 int set;
@@ -67,15 +65,18 @@ void keyReleased()
 void draw()
 {
   background(0);
-  //may not be working as attempted.
+ 
+ 
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
+    
     
       go.update();
       go.render();
     
   }
+  
   if(set==0)
   {
     
@@ -124,14 +125,15 @@ void Home()
 void endGame()
 {
   
-     for (int i = gameObjects.size() - 1; i >= 0; i --)
+     for (int i = gameObjects.size() ; i >= 0; i --)
   {
-    GameObject go = gameObjects.remove(i);
-    
-      go.update();
-      go.render();
-    
+     GameObject go = gameObjects.get(i);
+     gameObjects.remove(go);
+     Object--;
+     go.update();
+     go.render();   
   }
+    
     text("  Defense  ",X+250,Y+250);
     text("  Game Over  ",X+250,Y+270);
     text("  End Points =  ",X+250,Y+290);
