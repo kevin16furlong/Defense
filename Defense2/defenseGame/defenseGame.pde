@@ -4,14 +4,40 @@
 //sort out bot creation on second game
 //find music
 //file write and load for high score
+/*
+
+
+void setup() {
+  size(200,200);
+  
+}
+
+void draw() {
+  background(255);
+  stroke(0);
+  for (int i = 0; i < data.length; i++) {
+    fill(data[i]);
+    rect(i*20,0,20,data[i]);
+  }
+}
+Text can also be written back to a data file with saveStrings(). saveStrings() writes an array of strings to a file, one line per string.
+
+String words = "apple bear cat dog";
+String[] list = split(words, ' ');
+
+
+*/
+
 //do some morestuff
 
 
-int points=0;
-int Object=0;
+int points;
+int Object = 0;
 int set;
 int mode = 0;
-int lastPoints=0;
+int lastPoints = 0;
+int high = 0;
+int[] data;
 void setup()
 {
   for(int i= gameObjects.size() -1 ;i>0;i--)
@@ -19,9 +45,17 @@ void setup()
     gameObjects.get(i);
     gameObjects.remove(i);  
   }
+/*  
+  // Load text file as a string
+  String[] score = loadStrings("data.txt");
+  // Convert string into an array of integers using ',' as a delimiter
+  data = int(split(score[0],','));
+  */
   
-  set=0;
-  points=0;
+    
+  lastPoints=high;
+  set = 0;
+  points = 0;
   size(600, 600);
   
   Ship ship = new Ship('A', 'D','S', width/2, height/2, color(255,0,0));
@@ -118,6 +152,8 @@ void endGame()
     text("  End Points =  ",X+250,Y+290);
     text(points, X+400,Y+290);
     text("  Press 1 to play a New Game",X,Y+120);
+     
+
     if(points > lastPoints)
     {
       lastPoints=points;
