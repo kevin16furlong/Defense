@@ -2,33 +2,9 @@
 
 //sort out exceptions 
 //sort out bot creation on second game
-//find music
-//file write and load for high score
-/*
+//find music??
+//file write high scores
 
-
-void setup() {
-  size(200,200);
-  
-}
-
-void draw() {
-  background(255);
-  stroke(0);
-  for (int i = 0; i < data.length; i++) {
-    fill(data[i]);
-    rect(i*20,0,20,data[i]);
-  }
-}
-Text can also be written back to a data file with saveStrings(). saveStrings() writes an array of strings to a file, one line per string.
-
-String words = "apple bear cat dog";
-String[] list = split(words, ' ');
-
-
-*/
-
-//do some morestuff
 
 
 int points;
@@ -45,15 +21,20 @@ void setup()
     gameObjects.get(i);
     gameObjects.remove(i);  
   }
-/*  
+ 
   // Load text file as a string
   String[] score = loadStrings("data.txt");
   // Convert string into an array of integers using ',' as a delimiter
   data = int(split(score[0],','));
-  */
   
-    
-  lastPoints=high;
+   for (int i = 0; i < data.length; i++) 
+   {
+     if(data[i]>high)
+     {
+       high=data[i];
+     }
+   } 
+  
   set = 0;
   points = 0;
   size(600, 600);
@@ -131,6 +112,10 @@ void Home()
   text("D to Rotate Right",X,Y+60);
   text("  Press 1 to play Game",X,Y+120);
   text("High Score ",X+500,Y+40);
+  if(lastPoints<high)
+  {
+    lastPoints=high;
+  }
   text(lastPoints, X+565,Y+40); 
   set=1;
   
@@ -217,7 +202,7 @@ void playGame()
  checkCollisions();
 }
 
-// Check every bullet against aiships and collision with ship
+// Check every bullet against aiships 
 void checkCollisions()
 {
   for (int i = gameObjects.size() - 1; i >= 0; i --)
@@ -241,7 +226,7 @@ void checkCollisions()
       }
     }
   }
-  //check if aiships have reached inner circle
+  //check if aiships have reached ship
   
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
