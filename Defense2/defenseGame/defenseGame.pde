@@ -14,11 +14,11 @@ int high = 0;
 int[] data;
 void setup()
 {
-  for(int i= gameObjects.size() -1 ;i>0;i--)
+ /* for(int i= gameObjects.size() -1 ;i>0;i--)
   {
     gameObjects.get(i);
     gameObjects.remove(i);  
-  }
+  }*/
  
   // Load text file as a string
   String[] score = loadStrings("data.txt");
@@ -70,7 +70,6 @@ void draw()
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
-    
     
       go.update();
       go.render();
@@ -124,14 +123,13 @@ void Home()
 }
 void endGame()
 {
-  
-     for (int i = gameObjects.size() ; i >= 0; i --)
+   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
-     GameObject go = gameObjects.get(i);
-     gameObjects.remove(go);
-     Object--;
-     go.update();
-     go.render();   
+    GameObject go = gameObjects.remove(i);
+    
+      go.update();
+      go.render();
+    
   }
     
     text("  Defense  ",X+250,Y+250);
