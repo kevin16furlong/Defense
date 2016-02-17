@@ -142,6 +142,8 @@ void endGame()
     if(points > lastPoints)
     {
       lastPoints=points;
+      //Score[0]=concat(points, ",");
+      
     }
     set=1;
     if (frameCount % 240 == 0)
