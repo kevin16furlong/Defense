@@ -1,6 +1,7 @@
 /* a defense game using a basic tower defense stratgdgy*/
 
-//sort out exceptions   this note seems to no longer be a problem, 
+//sort out exceptions   can be a problem at times but game tends to work fine some of the time
+
 //find music??  decided due to not being able to find a track i thought would be good to use, to leave out this function
 
 
@@ -17,6 +18,7 @@ int lastPoints = 0;
 int high = 0;
 int []data;
 
+//setup method
 void setup()
 {
   // Load text file as a string
@@ -31,7 +33,7 @@ void setup()
  
   
 }
-
+//arrays for objects and booleans for key pressed
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 boolean[] keys = new boolean[512];
 
@@ -50,12 +52,10 @@ void keyReleased()
 {
   keys[keyCode] = false;
 }
-
+//draw method
 void draw()
 {
   background(0);
- 
- 
   for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
@@ -67,9 +67,10 @@ void draw()
   
   if(set==0)
   {
-    
+    //call the home screen
     Home();
   }
+  //switch method to swap between game screens
   switch(mode)
   {
     case 0:
@@ -79,12 +80,13 @@ void draw()
     }
     case 1:
     {
-     
+     //calls the play game method
       playGame();
       break;
     }
     case 3:
     {
+      //ends the game, saves the high score, reverts back to home screen
       endGame();
       break;
     }
@@ -110,8 +112,10 @@ void Home()
   
 
 }
+//end game method
 void endGame()
 {
+  //loop to remove objects
    for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.remove(i);
@@ -120,14 +124,14 @@ void endGame()
       go.render();
     
   }
-    
+    //prints text
     text("  Defense  ",X+250,Y+250);
     text("  Game Over  ",X+250,Y+270);
     text("  End Points =  ",X+250,Y+290);
     text(points, X+400,Y+290);
     text("  Press 1 to play a New Game",X,Y+120);
      
-
+  //checks if high score was reached
     if(points > lastPoints)
     {
       lastPoints=points;
@@ -139,6 +143,7 @@ void endGame()
           data[i]=lastPoints;
         }
       }
+      //calls the save method
       save();
       
       
@@ -248,6 +253,8 @@ void checkCollisions()
     }
   } 
 }
+
+//loads in the previous high score allowing for mutiple inputs to be in the file
 void loadData()
 {
   // Load text file as a string
@@ -267,6 +274,7 @@ void loadData()
    } 
 
 }
+//saves to the data file
 void save()
 {
   int temp=0;
