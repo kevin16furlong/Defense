@@ -1,8 +1,7 @@
 /* a defense game using a basic tower defense stratgdgy*/
 
-//sort out exceptions 
-//find music??
-//file write high scores
+//sort out exceptions   this note seems to no longer be a problem, 
+//find music??  decided due to not being able to find a track i thought would be good to use, to leave out this function
 
 
 //inputs
@@ -271,7 +270,7 @@ void loadData()
 void save()
 {
   int temp=0;
-  for(int j=data.length;j>0;j--)
+  for(int j =  data.length-1;j>0;j--)
     {
       if(data[j]>data[j-1])
       {
@@ -280,6 +279,7 @@ void save()
         data[j-1]=temp;
       }
     }
+    println(data);
    
   String x[] = str(data);
    saveStrings("data/data.txt", x);
