@@ -16,27 +16,12 @@ int set;
 int mode = 0;
 int lastPoints = 0;
 int high = 0;
-int[] data;
+int []data;
 
 void setup()
 {
- 
   // Load text file as a string
-  String[] score = loadStrings("data.csv");
-  println(score);
-  // Convert string into an array of integers using ',' as a delimiter
-  
-   
-     data = int(split(score[0],'.'));
-     println(data);
-   
-   for (int i = 0; i < data.length; i++) 
-   {
-     if(data[i]>high)
-     {
-       high=data[i];
-     }
-   } 
+ loadData();
   
   set = 0;
   points = 0;
@@ -264,9 +249,39 @@ void checkCollisions()
     }
   } 
 }
+void loadData()
+{
+  // Load text file as a string
+  String[] score = loadStrings("data.txt");
+  println(score);
+  // Convert string into an array of integers using ',' as a delimiter 
+     data = int(split(score[0], ','));
+     
+     println(data);
+   
+   for (int i = 0; i < data.length; i++) 
+   {
+     if(data[i]>high)
+     {
+       high=data[i];
+     }
+   } 
+
+}
 void save()
-{ 
+{
+  int temp=0;
+  for(int j=data.length;j>0;j--)
+    {
+      if(data[j]>data[j-1])
+      {
+        temp=data[j];
+        data[j-1]=data[j];
+        data[j-1]=temp;
+      }
+    }
+   
   String x[] = str(data);
-   saveStrings("data/data.csv", x);
+   saveStrings("data/data.txt", x);
  
 }
