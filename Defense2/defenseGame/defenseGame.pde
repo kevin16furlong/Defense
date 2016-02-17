@@ -1,7 +1,6 @@
 /* a defense game using a basic tower defense stratgdgy*/
 
 //sort out exceptions 
-//sort out bot creation on second game
 //find music??
 //file write high scores
 
@@ -12,13 +11,9 @@ int mode = 0;
 int lastPoints = 0;
 int high = 0;
 int[] data;
+
 void setup()
 {
- /* for(int i= gameObjects.size() -1 ;i>0;i--)
-  {
-    gameObjects.get(i);
-    gameObjects.remove(i);  
-  }*/
  
   // Load text file as a string
   String[] score = loadStrings("data.txt");
@@ -126,7 +121,7 @@ void endGame()
    for (int i = gameObjects.size() - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.remove(i);
-    
+    Object--;
       go.update();
       go.render();
     
